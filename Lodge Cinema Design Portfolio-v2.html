@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lodge Cinema — Complete Design Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0e0c09;--bg2:#161310;--bg3:#1e1a13;--bg4:#252018;
+  --border:#2c261c;--border2:#3a3225;
+  --text:#ddd0bc;--muted:#7a6e5a;--dim:#4a4235;
+  --gold:#c8944a;--gold2:#e0a855;--amber:#b87840;
+  --green:#6aad5a;--red:#c87060;--blue:#6a9ab8;--warn:#d4a040;
+  --font-d:'Playfair Display',serif;
+  --font-b:'Barlow',sans-serif;
+  --font-c:'Barlow Condensed',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height:100vh}
+
+/* ═══════ COVER ═══════ */
+.cover{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  background:radial-gradient(ellipse at 30% 40%,#1e1608 0%,#0e0c09 70%);
+  position:relative;overflow:hidden;text-align:center;padding:3rem 2rem;
+}
+.cover::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(180deg,transparent 0,transparent 38px,rgba(200,148,74,.03) 38px,rgba(200,148,74,.03) 40px);
+  pointer-events:none;
+}
+.cover-rule{width:60px;height:1px;background:var(--gold);margin:0 auto 1.5rem;opacity:.5}
+.cover h1{font-family:var(--font-d);font-size:clamp(2rem,5vw,3.4rem);font-weight:300;color:#ede0cc;letter-spacing:.04em;line-height:1.2;margin-bottom:.6rem}
+.cover h1 em{font-style:italic;color:var(--gold)}
+.cover-sub{font-family:var(--font-c);font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
+.cover-meta{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.cover-stat{text-align:center}
+.cover-stat-n{font-family:var(--font-d);font-size:1.8rem;font-weight:300;color:var(--gold);font-style:italic}
+.cover-stat-l{font-family:var(--font-c);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.1rem}
+.cover-nav{display:flex;flex-direction:column;gap:.6rem;width:100%;max-width:380px}
+.cover-navbtn{
+  display:flex;align-items:center;gap:1rem;padding:.85rem 1.2rem;
+  background:var(--bg2);border:1px solid var(--border);border-radius:3px;
+  cursor:pointer;transition:all .2s;text-decoration:none;
+  width:100%;text-align:left;font-family:inherit;
+  touch-action:manipulation;-webkit-tap-highlight-color:rgba(200,148,74,.15);
+}
+.cover-navbtn:hover{border-color:var(--gold);background:var(--bg3)}
+.cover-navbtn-n{font-family:var(--font-d);font-size:1.1rem;color:var(--gold);font-style:italic;min-width:24px}
+.cover-navbtn-t{font-family:var(--font-c);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text)}
+.cover-navbtn-a{margin-left:auto;font-size:.7rem;color:var(--dim)}
+
+/* ═══════ SHELL ═══════ */
+.shell{display:flex;height:100vh;overflow:hidden}
+.sidebar{
+  width:240px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--border);
+  height:100vh;overflow-y:auto;
+  display:flex;flex-direction:column;
+  transition:transform .28s ease;
+}
+.sb-logo{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--border)}
+.sb-logo h2{font-family:var(--font-d);font-size:.95rem;font-weight:400;color:#ddd0bc;font-style:italic}
+.sb-logo p{font-family:var(--font-c);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
+.sb-section{padding:.6rem 0}
+.sb-section-label{font-family:var(--font-c);font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);padding:.3rem 1.2rem .4rem}
+.sb-link{
+  display:flex;align-items:center;gap:.6rem;padding:.45rem 1.2rem;
+  font-family:var(--font-c);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);cursor:pointer;transition:all .15s;border-left:2px solid transparent;
+  text-decoration:none;touch-action:manipulation;
+}
+.sb-link:hover{color:var(--text);background:var(--bg3)}
+.sb-link.active{color:var(--gold);border-left-color:var(--gold);background:var(--bg3)}
+.sb-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;opacity:.7}
+.sb-prog{margin-top:auto;padding:1rem 1.2rem;border-top:1px solid var(--border)}
+.sb-prog-label{font-family:var(--font-c);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.sb-prog-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.sb-prog-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .5s ease;width:0%}
+.sb-prog-n{font-family:var(--font-c);font-size:.6rem;color:var(--muted);margin-top:.3rem}
+
+.main{flex:1;overflow-y:auto;min-width:0;height:100vh}
+
+/* ═══════ SECTIONS ═══════ */
+.section{padding:2.5rem 2.5rem 3rem;border-bottom:1px solid var(--border);max-width:1100px}
+.section-header{display:flex;align-items:flex-end;gap:1rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.section-num{font-family:var(--font-d);font-size:3rem;font-weight:300;color:var(--border2);font-style:italic;line-height:1;flex-shrink:0}
+.section-titles{}
+.section-tag{font-family:var(--font-c);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem}
+.section-title{font-family:var(--font-d);font-size:1.5rem;font-weight:400;color:#ede0cc;letter-spacing:.02em}
+
+/* ═══════ PALETTE ═══════ */
+.palette-full-strip{display:flex;height:50px;border-radius:3px;overflow:hidden;margin-bottom:2rem;box-shadow:0 2px 20px rgba(0,0,0,.5)}
+.palette-full-strip div{flex:1;transition:flex .25s;cursor:default}
+.palette-full-strip div:hover{flex:2}
+.palette-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.pal-card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.pal-swatch{height:90px;position:relative;display:flex;align-items:flex-end;padding:.6rem .8rem}
+.pal-swatch-label{font-family:var(--font-c);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;opacity:0;transition:opacity .2s}
+.pal-card:hover .pal-swatch-label{opacity:1}
+.pal-info{padding:.85rem 1rem}
+.pal-applies{font-family:var(--font-c);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.pal-name{font-size:.9rem;color:var(--text);font-weight:500;margin-bottom:.15rem}
+.pal-hex{font-family:var(--font-c);font-size:.62rem;color:var(--muted);letter-spacing:.1em;margin-bottom:.7rem}
+.pal-divider{height:1px;background:var(--border);margin-bottom:.7rem}
+.pal-product{font-size:.72rem;color:var(--text);font-weight:400;margin-bottom:.2rem}
+.pal-product span{color:var(--muted)}
+.pal-prep{font-size:.68rem;color:var(--muted);line-height:1.5;margin-top:.4rem;padding-top:.4rem;border-top:1px solid var(--border)}
+.pal-prep strong{color:var(--warn)}
+
+/* ═══════ CHECKLIST ═══════ */
+.checklist{display:flex;flex-direction:column;gap:.5rem}
+.cl-group{margin-bottom:.8rem}
+.cl-group-label{font-family:var(--font-c);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;padding-left:.2rem}
+.cl-item{
+  display:flex;align-items:flex-start;gap:.8rem;padding:.7rem .9rem;
+  background:var(--bg2);border:1px solid var(--border);border-radius:3px;
+  cursor:pointer;transition:all .15s;
+}
+.cl-item:hover{border-color:var(--border2)}
+.cl-item.done{background:var(--bg3);border-color:var(--border)}
+.cl-item.done .cl-text{text-decoration:line-through;color:var(--dim)}
+.cl-item.done .cl-note{color:var(--dim)}
+.cl-check{
+  width:18px;height:18px;border:1.5px solid var(--border2);border-radius:2px;flex-shrink:0;
+  margin-top:.1rem;display:flex;align-items:center;justify-content:center;transition:all .15s;
+}
+.cl-item.done .cl-check{background:var(--green);border-color:var(--green)}
+.cl-check-mark{color:#fff;font-size:.7rem;opacity:0;transition:opacity .15s}
+.cl-item.done .cl-check-mark{opacity:1}
+.cl-content{flex:1;min-width:0}
+.cl-text{font-size:.8rem;color:var(--text);font-weight:400;line-height:1.4}
+.cl-note{font-size:.68rem;color:var(--muted);margin-top:.15rem;line-height:1.4}
+.cl-tag{font-family:var(--font-c);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;padding:.15rem .4rem;border-radius:1px;margin-left:auto;align-self:flex-start;flex-shrink:0}
+.tag-prep{background:#1a1e2a;color:var(--blue);border:1px solid #2a2e3a}
+.tag-build{background:#2a1e0a;color:var(--gold);border:1px solid #3a2e18}
+.tag-finish{background:#1a2a1a;color:var(--green);border:1px solid #2a3a2a}
+.tag-critical{background:#2a1010;color:var(--red);border:1px solid #3a2020}
+
+/* Progress */
+.progress-bar-wrap{background:var(--border);border-radius:2px;height:4px;margin-bottom:1.5rem;overflow:hidden}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--gold));border-radius:2px;transition:width .6s ease;width:0%}
+.progress-label{font-family:var(--font-c);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem;display:flex;justify-content:space-between}
+
+/* ═══════ DESIGN SECTIONS ═══════ */
+.ds-summary{background:linear-gradient(135deg,#1a1408,#221c0e);border:1px solid #3a3020;border-left:3px solid var(--gold);border-radius:3px;padding:1.1rem 1.4rem;margin-bottom:1.8rem}
+.ds-summary h4{font-family:var(--font-d);font-size:.95rem;font-weight:400;color:var(--gold);margin-bottom:.4rem}
+.ds-summary p{font-size:.8rem;line-height:1.65;color:var(--text);font-weight:300}
+.ds-summary strong{color:var(--gold2);font-weight:500}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;align-items:start}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;align-items:start}
+
+.spec-card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:1.2rem}
+.spec-card-head{padding:.65rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.spec-card-title{font-family:var(--font-c);font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text)}
+.badge{font-family:var(--font-c);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;padding:.18rem .45rem;border-radius:1px}
+.badge-final{background:#1a3020;color:var(--green);border:1px solid #2a4030}
+.badge-note{background:#2a1e0a;color:var(--gold);border:1px solid #3a2e18}
+.badge-warn{background:#2a1a08;color:var(--warn);border:1px solid #3a2a10}
+.spec-card-body{padding:.9rem 1rem}
+.spec-tbl{width:100%;border-collapse:collapse}
+.spec-tbl td{padding:.38rem .6rem;font-size:.75rem;border-bottom:1px solid var(--border);vertical-align:top}
+.spec-tbl td:first-child{font-family:var(--font-c);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:42%;padding-top:.5rem}
+.spec-tbl tr:last-child td{border-bottom:none}
+.spec-tbl strong{color:var(--gold2);font-weight:500}
+
+.steps-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.step-item{display:flex;gap:.75rem;align-items:flex-start;font-size:.77rem;color:var(--text);font-weight:300;line-height:1.6}
+.step-n{font-family:var(--font-d);font-size:.95rem;color:var(--gold);font-style:italic;min-width:18px;flex-shrink:0;margin-top:.05rem}
+.step-item strong{color:var(--gold2);font-weight:500}
+.step-item em{color:var(--warn);font-style:normal}
+
+.warn-box{background:#1e1208;border:1px solid #4a3010;border-left:3px solid var(--warn);border-radius:3px;padding:.85rem 1rem;margin:.8rem 0}
+.warn-box p{font-size:.76rem;line-height:1.6;color:var(--text);font-weight:300}
+.warn-box strong{color:var(--warn);font-weight:500}
+
+/* Canvas renders */
+.render-wrap{border-radius:4px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 28px rgba(0,0,0,.6);margin-bottom:1.2rem}
+.render-wrap canvas{width:100%;display:block}
+.render-caption{padding:.45rem .8rem;background:var(--bg3);font-family:var(--font-c);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--border)}
+
+/* ═══════ UTILS ═══════ */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+.sep{height:1px;background:var(--border);margin:1.2rem 0}
+.lede{font-size:.82rem;line-height:1.7;color:var(--text);font-weight:300;margin-bottom:1.2rem}
+.lede strong{color:var(--gold2);font-weight:500}
+
+/* ═══════ MOBILE ═══════ */
+.mob-bar{
+  display:none;align-items:center;gap:.9rem;
+  padding:.75rem 1rem;background:var(--bg2);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:10;flex-shrink:0;
+}
+.mob-bar-title{font-family:var(--font-d);font-size:.9rem;font-style:italic;color:#ddd0bc;flex:1}
+.mob-prog{font-family:var(--font-c);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mob-hamburger{
+  width:32px;height:32px;display:flex;flex-direction:column;justify-content:center;
+  gap:5px;cursor:pointer;background:none;border:none;padding:2px;flex-shrink:0;
+  touch-action:manipulation;
+}
+.mob-hamburger span{display:block;height:1.5px;background:var(--text);border-radius:2px;transition:all .2s}
+.overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:19;
+}
+.overlay.open{display:block}
+
+@media(max-width:768px){
+  .mob-bar{display:flex}
+  .shell{flex-direction:column;height:auto;overflow:visible}
+  .main{height:auto;overflow-y:visible}
+  /* sidebar becomes fixed drawer */
+  .sidebar{
+    position:fixed;top:0;left:0;z-index:20;
+    transform:translateX(-100%);
+    box-shadow:4px 0 32px rgba(0,0,0,.7);
+  }
+  .sidebar.open{transform:translateX(0)}
+  /* sections */
+  .section{padding:1.4rem 1.1rem 2rem}
+  .grid2,.grid3{grid-template-columns:1fr}
+  .section-num{font-size:2rem}
+  .palette-cards{grid-template-columns:1fr}
+  .cover-meta{gap:1.2rem}
+  .cover-navbtn-t{font-size:.6rem;letter-spacing:.12em}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     COVER
+═══════════════════════════════════════════ -->
+<div class="cover" id="cover">
+  <div class="cover-rule"></div>
+  <h1>Lodge <em>Cinema</em></h1>
+  <p class="cover-sub">Complete Design Portfolio · 544 sq ft · Baton Rouge, LA</p>
+  <div class="cover-meta">
+    <div class="cover-stat"><div class="cover-stat-n">3</div><div class="cover-stat-l">Sections</div></div>
+    <div class="cover-stat"><div class="cover-stat-n">8</div><div class="cover-stat-l">Design Items</div></div>
+    <div class="cover-stat"><div class="cover-stat-n">6</div><div class="cover-stat-l">Color Decisions</div></div>
+    <div class="cover-stat"><div class="cover-stat-n">25+</div><div class="cover-stat-l">Checklist Items</div></div>
+  </div>
+  <div class="cover-nav">
+    <button type="button" class="cover-navbtn" data-target="palette" aria-label="Open Color Palette and Shopping Guide">
+      <span class="cover-navbtn-n">I</span>
+      <span class="cover-navbtn-t">Color Palette & Shopping Guide</span>
+      <span class="cover-navbtn-a">→</span>
+    </button>
+    <button type="button" class="cover-navbtn" data-target="checklist" aria-label="Open Design Checklist">
+      <span class="cover-navbtn-n">II</span>
+      <span class="cover-navbtn-t">Design Checklist</span>
+      <span class="cover-navbtn-a">→</span>
+    </button>
+    <button type="button" class="cover-navbtn" data-target="walls" aria-label="Open Design Specifications">
+      <span class="cover-navbtn-n">III</span>
+      <span class="cover-navbtn-t">Design Specifications</span>
+      <span class="cover-navbtn-a">→</span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MAIN APP
+═══════════════════════════════════════════ -->
+<div class="shell" id="mainShell" style="display:none">
+
+  <!-- MOBILE TOP BAR -->
+  <div class="mob-bar" id="mobBar">
+    <button class="mob-hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="mob-bar-title">Lodge Cinema</span>
+    <button type="button" id="mobHomeBtn" style="background:none;border:1px solid var(--border2);color:var(--text);padding:.28rem .5rem;border-radius:3px;font-family:var(--font-c);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase">Home</button>
+    <span class="mob-prog" id="mobProg">0%</span>
+  </div>
+
+  <!-- OVERLAY (mobile drawer close) -->
+  <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sb-logo">
+      <h2>Lodge Cinema</h2>
+      <p>Design Portfolio</p>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-section-label">Navigation</div>
+      <a class="sb-link" href="#cover" onclick="event.preventDefault();goHome()">
+        <span class="sb-dot" style="background:#ddd0bc"></span>Home
+      </a>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-section-label">I — Palette</div>
+      <a class="sb-link active" href="#palette" onclick="event.preventDefault();navScrollTo('palette');setActive(this)">
+        <span class="sb-dot" style="background:#c8944a"></span>Color Palette
+      </a>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-section-label">II — Checklist</div>
+      <a class="sb-link" href="#checklist" onclick="event.preventDefault();navScrollTo('checklist');setActive(this)">
+        <span class="sb-dot" style="background:#6aad5a"></span>All Tasks
+      </a>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-section-label">III — Specifications</div>
+      <a class="sb-link" href="#walls" onclick="event.preventDefault();navScrollTo('walls');setActive(this)">
+        <span class="sb-dot" style="background:#5A4638"></span>Shiplap Walls
+      </a>
+      <a class="sb-link" href="#trim" onclick="event.preventDefault();navScrollTo('trim');setActive(this)">
+        <span class="sb-dot" style="background:#1F1A17"></span>Trim System
+      </a>
+      <a class="sb-link" href="#riser" onclick="event.preventDefault();navScrollTo('riser');setActive(this)">
+        <span class="sb-dot" style="background:#2E241E"></span>Riser + Booknook
+      </a>
+      <a class="sb-link" href="#shelving" onclick="event.preventDefault();navScrollTo('shelving');setActive(this)">
+        <span class="sb-dot" style="background:#3A312B"></span>Shelving
+      </a>
+      <a class="sb-link" href="#valance" onclick="event.preventDefault();navScrollTo('valance');setActive(this)">
+        <span class="sb-dot" style="background:#1F1A17"></span>Screen Valance Box
+      </a>
+      <a class="sb-link" href="#ceiling" onclick="event.preventDefault();navScrollTo('ceiling');setActive(this)">
+        <span class="sb-dot" style="background:#6A5648"></span>Ceiling Touch-Up
+      </a>
+    </div>
+
+    <div class="sb-prog">
+      <div class="sb-prog-label">Build Progress</div>
+      <div class="sb-prog-bar"><div class="sb-prog-fill" id="sbProgress"></div></div>
+      <div class="sb-prog-n" id="sbProgressN">0 of 26 complete</div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main" id="mainContent">
+
+    <!-- ══════════ SECTION I: PALETTE ══════════ -->
+    <div class="section" id="palette">
+      <div class="section-header">
+        <div class="section-num">I</div>
+        <div class="section-titles">
+          <div class="section-tag">Color Decisions · Shopping Guide</div>
+          <div class="section-title">Color Palette</div>
+        </div>
+      </div>
+
+      <p class="lede">Every color decision finalized for the build. Each swatch shows what surface it applies to, the exact hex, the product to buy at Lowe's, and any prep materials required. Swatches are arranged light-to-dark so you can see how the tones layer.</p>
+
+      <div class="palette-full-strip" id="paletteStrip"></div>
+
+      <div class="palette-cards" id="paletteCards"></div>
+    </div>
+
+    <!-- ══════════ SECTION II: CHECKLIST ══════════ -->
+    <div class="section" id="checklist">
+      <div class="section-header">
+        <div class="section-num">II</div>
+        <div class="section-titles">
+          <div class="section-tag">Build Tasks · Tap to Check Off</div>
+          <div class="section-title">Design Checklist</div>
+        </div>
+      </div>
+
+      <div class="progress-label">
+        <span>Overall Completion</span>
+        <span id="progressPct">0%</span>
+      </div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
+
+      <div class="checklist" id="checklistEl"></div>
+    </div>
+
+    <!-- ══════════ SECTION III: WALLS ══════════ -->
+    <div class="section" id="walls">
+      <div class="section-header">
+        <div class="section-num">3.1</div>
+        <div class="section-titles">
+          <div class="section-tag">Design Specification</div>
+          <div class="section-title">Shiplap Walls</div>
+        </div>
+      </div>
+
+      <div class="ds-summary">
+        <h4>Specification: Horizontal Pine Shiplap · Dark Walnut Stain · Flat Matte Finish</h4>
+        <p>Unfinished 23/32" × 7⅛" × 8ft pine shiplap planks, stained with <strong>Minwax Dark Walnut #2716 gel-stain process</strong>, finished with flat wipe-on poly. Installed horizontally across all non-brick framed walls. The stain must be preceded by wood conditioner on every board — pine blotches severely without it.</p>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <div class="spec-card">
+            <div class="spec-card-head"><span class="spec-card-title">Material + Stain Specs</span><span class="badge badge-final">Finalized</span></div>
+            <div class="spec-card-body">
+              <table class="spec-tbl">
+                <tr><td>Board</td><td>RELIABILT 23/32" × 7⅛" × 8ft Unfinished Pine Shiplap</td></tr>
+                <tr><td>Conditioner</td><td><strong>Minwax Pre-Stain Wood Conditioner</strong> — apply 15 min before stain</td></tr>
+                <tr><td>Stain</td><td><strong>Minwax Oil Stain — Dark Walnut #2716</strong></td></tr>
+                <tr><td>Topcoat</td><td><strong>Minwax Wipe-On Poly — Flat finish only</strong></td></tr>
+                <tr><td>Application</td><td>Lint-free shop rags — no brushes</td></tr>
+                <tr><td>Direction</td><td>Horizontal installation</td></tr>
+                <tr><td>Expected result</td><td>~#5A4638 warm walnut tone</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="warn-box">
+            <p><strong>Critical:</strong> Stain before install whenever possible. Working horizontal boards on sawhorses gives even, consistent results. Staining vertical installed boards is significantly harder and results are less uniform.</p>
+          </div>
+        </div>
+        <div>
+          <div class="spec-card">
+            <div class="spec-card-head"><span class="spec-card-title">Exact Process — Do In This Order</span><span class="badge badge-warn">Follow Exactly</span></div>
+            <div class="spec-card-body">
+              <ul class="steps-list">
+                <li class="step-item"><span class="step-n">1</span><div>Sand all boards 120 grit → 150 grit, with the grain</div></li>
+                <li class="step-item"><span class="step-n">2</span><div>Wipe dust with tack cloth, wait 15–20 min</div></li>
+                <li class="step-item"><span class="step-n">3</span><div>Apply <strong>Minwax Pre-Stain Conditioner</strong> — full coverage with rag</div></li>
+                <li class="step-item"><span class="step-n">4</span><div><em>Within 15 minutes</em> — apply Dark Walnut stain with clean rag, long strokes with the grain</div></li>
+                <li class="step-item"><span class="step-n">5</span><div>Wipe excess at 4–5 minutes for target depth. Test timing on scrap first</div></li>
+                <li class="step-item"><span class="step-n">6</span><div>Cure 8 hrs. Second coat optional for deeper tone — no second conditioner needed</div></li>
+                <li class="step-item"><span class="step-n">7</span><div>Apply one coat <strong>Wipe-On Poly Flat</strong> with rag. Cure 24 hrs before install</div></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="render-wrap"><canvas id="wallCanvas" width="720" height="220"></canvas><div class="render-caption">Dark walnut stained pine shiplap against your existing brick and ceiling</div></div>
+    </div>
+
+    <!-- ══════════ SECTION III: TRIM ══════════ -->
+    <div class="section" id="trim">
+      <div class="section-header">
+        <div class="section-num">3.2</div>
+        <div class="section-titles">
+          <div class="section-tag">Design Specification</div>
+          <div class="section-title">Trim System</div>
+        </div>
+      </div>
+
+      <div class="ds-summary">
+        <h4>Specification: Flat Modern Matte Black Trim · No Profiles · Shadow Gap at Ceiling</h4>
+        <p>All trim is <strong>RELIABILT 1×4 Select S4S Pine</strong> painted matte black. No ogee profiles, no cap molding, no colonial shapes. The trim's job is architectural framing — clean flat faces, butt joints at corners, and a shadow gap (no crown molding) at the ceiling junction. <strong>You need more than 25 boards</strong> — see quantity note below.</p>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <div class="spec-card">
+            <div class="spec-card-head"><span class="spec-card-title">Trim Locations + Dimensions</span><span class="badge badge-final">Finalized</span></div>
+            <div class="spec-card-body">
+              <table class="spec-tbl">
+                <tr><td>Screen wall header</td><td>1×4 full width above screen — or stack 1×4+1×4 for deeper header presence</td></tr>
+                <tr><td>Screen vertical flanking</td><td>1×4 floor-to-ceiling, both sides of screen</td></tr>
+                <tr><td>Screen surround box</td><td>1×4 tight frame around screen perimeter</td></tr>
+                <tr><td>Baseboard (all walls)</td><td>1×4 flat — 3.5" face, square edge, no cap</td></tr>
+                <tr><td>Window casings (×2 windows)</td><td>1×4 all four sides each window</td></tr>
+                <tr><td>Door casings (×2 doors)</td><td>1×4 three sides each door</td></tr>
+                <tr><td>Riser step nosing</td><td>1×2 flat black cap (separate from 1×4 stock)</td></tr>
+                <tr><td>Shiplap-to-brick return</td><td>1×4 return piece at transition</td></tr>
+                <tr><td>Ceiling treatment</td><td>Shadow gap only — no crown molding</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="warn-box">
+            <p><strong>Quantity note:</strong> 25 boards at 200 linear feet is likely short. Baseboard alone (~90 LF perimeter) + screen wall flanking + casings + waste cuts = 220–240 LF estimated. <strong>Buy 30–35 boards to be safe.</strong> Returns are easy; running short mid-install is not.</p>
+          </div>
+        </div>
+        <div>
+          <div class="spec-card">
+            <div class="spec-card-head"><span class="spec-card-title">Paint Process for Pine Trim → Matte Black</span><span class="badge badge-warn">Shellac Primer Required</span></div>
+            <div class="spec-card-body">
+              <ul class="steps-list">
+                <li class="step-item"><span class="step-n">1</span><div>Light sand with 150 grit — S4S boards are pre-surfaced but may have mill marks</div></li>
+                <li class="step-item"><span class="step-n">2</span><div>Apply <strong>Zinsser BIN Shellac-Based Primer</strong> — 1 coat. This is mandatory for pine; blocks resin bleed that turns black trim yellow at knots over time</div></li>
+                <li class="step-item"><span class="step-n">3</span><div>Sand primer with 220 grit after dry, wipe dust</div></li>
+                <li class="step-item"><span class="step-n">4</span><div>Apply <strong>Sherwin-Williams Emerald Urethane Trim Enamel — Tricorn Black SW 6258, Flat sheen</strong> — 2 coats with 4" foam roller on faces, brush on edges</div></li>
+                <li class="step-item"><span class="step-n">5</span><div>Install after second coat fully cures (24 hrs)</div></li>
+              </ul>
+            </div>
+          </div>
+          <div class="spec-card" style="margin-top:1rem">
+            <div class="spec-card-head"><span class="spec-card-title">Color Confirmation</span></div>
+            <div class="spec-card-body">
+              <div style="display:flex;gap:.8rem;align-items:center">
+                <div style="width:44px;height:44px;border-radius:3px;background:#1F1A17;border:1px solid #3a3028;flex-shrink:0"></div>
+                <div>
+                  <div style="font-size:.8rem;color:var(--text);font-weight:500">Tricorn Black SW 6258</div>
+                  <div style="font-family:var(--font-c);font-size:.62rem;color:var(--muted);letter-spacing:.08em">#1F1A17 approximate · Flat enamel</div>
+                  <div style="font-size:.68rem;color:var(--muted);margin-top:.2rem">Available at Sherwin-Williams — not stocked at Lowe's</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="render-wrap"><canvas id="trimCanvas" width="720" height="300"></canvas><div class="render-caption">Screen wall trim elevation — 1×4 flat header, vertical flanking, baseboard, shadow gap</div></div>
+    </div>
+
+    <!-- ══════════ SECTION III: RISER ══════════ -->
+    <div class="section" id="riser">
+      <div class="section-header">
+        <div class="section-num">3.3</div>
+        <div class="section-titles">
+          <div class="section-tag">Design Specification</div>
+          <div class="section-title">Riser + Booknook</div>
+        </div>
+      </div>
+
+      <div class="ds-summary">
+        <h4>Specification: L-Wrap Riser · 8" Step · Booknook Integration · Hidden Utility Chase</h4>
+        <p>Single-step riser at 8" height, 60" (5ft) platform depth, running the full room width then <strong>L-wrapping into the left corner</strong> to create the booknook alcove. The riser frame serves as a utility chase for the dryer vent line, hot water relief line, and all electrical runs to the seating area. Face clad in matching stained shiplap. Dark carpet on top. Toe-kick LED strip.</p>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <div class="spec-card">
+            <div class="spec-card-head"><span class="spec-card-title">Riser Construction Specs</span><span class="badge badge-final">Finalized</span></div>
+            <div class="spec-card-body">
+              <table class="spec-tbl">
+                <tr><td>Step height</td><td><strong>8 inches</strong> — standard comfortable step</td></tr>
+                <tr><td>Platform depth</td><td><strong>60 inches (5 ft)</strong> — recliners + legroom</td></tr>
+                <tr><td>Riser face</td><td>Matching stained pine shiplap, same Dark Walnut process</td></tr>
+                <tr><td>Step nosing</td><td>1×2 flat matte black cap — clean, safe edge</td></tr>
+                <tr><td>Platform surface</td><td>Dark charcoal low-pile carpet — ~#2E241E tone</td></tr>
+                <tr><td>Toe kick</td><td>Recessed 2" matte black — houses LED strip</td></tr>
+                <tr><td>LED strip</td><td>Under nosing facing floor — warm amber 2700K</td></tr>
+                <tr><td>Utility chase</td><td>Dryer vent + HW relief boxed inside frame before face shiplap</td></tr>
+                <tr><td>Electrical</td><td>Conduit run horizontally inside riser cavity to seating positions</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="spec-card">
+            <div class="spec-card-head"><span class="spec-card-title">Booknook Alcove Integration</span><span class="badge badge-final">Finalized</span></div>
+            <div class="spec-card-body">
+              <table class="spec-tbl">
+                <tr><td>Floor level</td><td>Same 8" height as main riser — continuous platform</td></tr>
+                <tr><td>Location</td><td>Left corner, screen-wall side, wrapping from main riser</td></tr>
+                <tr><td>Back wall</td><td>Continue shiplap (same stain) behind shelving</td></tr>
+                <tr><td>Seat surface</td><td>Same dark carpet as main platform</td></tr>
+                <tr><td>Seat cushion</td><td>Dark leather or near-black fabric, reading nook feel</td></tr>
+                <tr><td>L-wrap riser face</td><td>Matching shiplap around the corner</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="render-wrap" style="margin-top:1rem"><canvas id="riserPlan" width="340" height="280"></canvas><div class="render-caption">Floor plan — L-wrap riser with booknook corner</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ SECTION III: SHELVING ══════════ -->
+    <div class="section" id="shelving">
+      <div class="section-header">
+        <div class="section-num">3.4</div>
+        <div class="section-titles">
+          <div class="section-tag">Design Specification</div>
+          <div class="section-title">Booknook Shelving</div>
+        </div>
+      </div>
+
+      <div class="ds-summary">
+        <h4>Specification: Open Shelving · Matte Black Brackets · Stained Pine Shelves · Under-Shelf LED</h4>
+        <p>Built-in open shelving running from riser seat height to ceiling in the booknook alcove. <strong>3–4 shelves</strong> with matte black steel brackets and dark-stained pine shelf boards. Under-shelf LED lighting (warm amber, 2700K) on each level. Shiplap continues behind the shelving as the back wall.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="spec-card">
+          <div class="spec-card-head"><span class="spec-card-title">Shelf Construction Specs</span><span class="badge badge-final">Finalized</span></div>
+          <div class="spec-card-body">
+            <table class="spec-tbl">
+              <tr><td>Shelf boards</td><td>1×10 or 1×12 pine, same Dark Walnut stain process as shiplap</td></tr>
+              <tr><td>Number of shelves</td><td>3–4 shelves from seat height to ceiling</td></tr>
+              <tr><td>Shelf spacing</td><td>12" between shelves — accommodates standard books + objects</td></tr>
+              <tr><td>Brackets</td><td>Heavy-duty matte black steel floating shelf brackets — Lowe's carries Floating Shelf Bracket in matte black</td></tr>
+              <tr><td>Bracket spacing</td><td>16" on center, into studs — do not use drywall anchors for loaded shelves</td></tr>
+              <tr><td>Shelf thickness</td><td>¾" minimum — 1" preferred for lodge aesthetic weight</td></tr>
+              <tr><td>Back wall</td><td>Shiplap continues behind shelves — visible in gaps between objects</td></tr>
+              <tr><td>Under-shelf lighting</td><td>LED puck lights or continuous LED strip — warm amber 2700K — on underside of each shelf</td></tr>
+              <tr><td>LED power</td><td>Low-voltage, run through riser cavity electrical to dimmer switch</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-card-head"><span class="spec-card-title">Aesthetic Intent</span><span class="badge badge-note">Design Goal</span></div>
+          <div class="spec-card-body">
+            <ul class="steps-list">
+              <li class="step-item"><span class="step-n">→</span><div>The shelving should feel <strong>built-in and permanent</strong>, not added. Shiplap behind it achieves this — the wall exists behind the shelves, not under them</div></li>
+              <li class="step-item"><span class="step-n">→</span><div>Under-shelf lighting serves dual purpose: illuminates the booknook reading area and creates <strong>warm ambient glow</strong> visible from the main seating</div></li>
+              <li class="step-item"><span class="step-n">→</span><div>Dark brackets against dark stained shiplap means <strong>the brackets nearly disappear</strong> — the shelves appear to float out of the wall</div></li>
+              <li class="step-item"><span class="step-n">→</span><div>Keep shelf depth consistent with the alcove depth — <strong>don't let shelves protrude into the main riser walkway</strong></div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ SECTION III: VALANCE ══════════ -->
+    <div class="section" id="valance">
+      <div class="section-header">
+        <div class="section-num">3.5</div>
+        <div class="section-titles">
+          <div class="section-tag">Design Specification</div>
+          <div class="section-title">Projector Screen Valance Box</div>
+        </div>
+      </div>
+
+      <div class="ds-summary">
+        <h4>Specification: Enclosed Beam-Integrated Valance · Fully Hidden Motor · Removable Bottom Panel</h4>
+        <p>The existing structural beam above the screen wall becomes the valance. A three-sided box clads the beam and drops <strong>5 inches below the beam bottom</strong> (4" motor housing + 1" buffer). The bottom panel is <strong>removable for service access</strong>, with a slot opening precisely sized to the screen bar — not the full screen width. From any viewing angle, the motor housing is completely invisible. The screen appears to emerge from architectural structure.</p>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <div class="spec-card">
+            <div class="spec-card-head"><span class="spec-card-title">Valance Box Construction</span><span class="badge badge-final">Finalized</span></div>
+            <div class="spec-card-body">
+              <table class="spec-tbl">
+                <tr><td>Box depth</td><td>Match beam depth — <strong>5 inches</strong>, flush with beam face</td></tr>
+                <tr><td>Face drop</td><td><strong>5 inches below beam bottom</strong> (4" housing + 1" buffer)</td></tr>
+                <tr><td>Front face material</td><td>Pine boards, primed with shellac, painted <strong>Tricorn Black flat enamel</strong></td></tr>
+                <tr><td>Sides</td><td>Returned flush to wall on both ends — no visible gap</td></tr>
+                <tr><td>Bottom panel</td><td><strong>Removable</strong> — secured with rare-earth magnets or turn-button fasteners, no visible screws</td></tr>
+                <tr><td>Slot opening</td><td>Width of screen bar + ¼" each side — <strong>not full screen fabric width</strong></td></tr>
+                <tr><td>Slot position</td><td>Rear of bottom panel — screen hangs flush toward wall side</td></tr>
+                <tr><td>Finish</td><td>Same matte black as all trim — continuous with screen surround</td></tr>
+                <tr><td>Visual result</td><td>Screen rod appears flush with box bottom when raised</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="spec-card">
+            <div class="spec-card-head"><span class="spec-card-title">Why This Works</span><span class="badge badge-note">Design Logic</span></div>
+            <div class="spec-card-body">
+              <ul class="steps-list">
+                <li class="step-item"><span class="step-n">→</span><div>Beam is already structural and already at the right position — you're <strong>cladding something that exists</strong>, not adding a floating element</div></li>
+                <li class="step-item"><span class="step-n">→</span><div>The front face of the box aligns with your 1×4 vertical flanking trim — the <strong>entire screen wall reads as one composed frame</strong> from top to bottom</div></li>
+                <li class="step-item"><span class="step-n">→</span><div>Removable bottom means <strong>no destructive access</strong> if the motor or limit switch ever needs adjustment</div></li>
+                <li class="step-item"><span class="step-n">→</span><div>Slot sized to screen bar only — when screen is lowered, the fabric fills the visual opening. When raised, the <strong>rod sits flush and invisible</strong> from seating distance</div></li>
+              </ul>
+            </div>
+          </div>
+          <div class="render-wrap" style="margin-top:1rem"><canvas id="valanceCanvas" width="340" height="220"></canvas><div class="render-caption">Valance box cross-section — beam, box face, removable bottom, screen slot</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ SECTION III: CEILING ══════════ -->
+    <div class="section" id="ceiling">
+      <div class="section-header">
+        <div class="section-num">3.6</div>
+        <div class="section-titles">
+          <div class="section-tag">Design Specification</div>
+          <div class="section-title">Ceiling Touch-Up</div>
+        </div>
+      </div>
+
+      <div class="ds-summary">
+        <h4>Specification: Spot Treatment Only · Do NOT Refinish · Preserve the Patina</h4>
+        <p>The ceiling's natural variation — dark patches, lighter boards, grain differences — is the most valuable thing about it. It looks like a 100-year lodge ceiling because it essentially is. <strong>Only the white water-stain spots and stark sun-exposure discoloration need treatment.</strong> Everything else gets left entirely alone. Total work: 2–3 hours, ~$30 in materials.</p>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <div class="spec-card">
+            <div class="spec-card-head"><span class="spec-card-title">Touch-Up Process</span><span class="badge badge-final">Spot Treatment Only</span></div>
+            <div class="spec-card-body">
+              <ul class="steps-list">
+                <li class="step-item"><span class="step-n">1</span><div><strong>Clean:</strong> Vacuum loose dust with brush attachment. Barely-damp rag wipe. Let dry 48 hrs</div></li>
+                <li class="step-item"><span class="step-n">2</span><div><strong>Sand white spots only:</strong> 150 grit on water-stain areas — abrade the white mineral deposit, not the wood. Don't flatten grain</div></li>
+                <li class="step-item"><span class="step-n">3</span><div><strong>Spot stain:</strong> Minwax Dark Walnut gel stain on damaged areas with small rag. Feather edges 3–4 inches outward — no hard lines</div></li>
+                <li class="step-item"><span class="step-n">4</span><div><strong>Blend check:</strong> View from 8 ft. If still reading lighter, second pass after 2 hr dry</div></li>
+                <li class="step-item"><span class="step-n">5</span><div><strong>Seal spots only:</strong> Flat wipe-on poly on treated areas. Do NOT coat the whole ceiling</div></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="spec-card">
+            <div class="spec-card-head"><span class="spec-card-title">Do NOT Do These Things</span><span class="badge" style="background:#2a1010;color:var(--red);border:1px solid #3a2020">Hard No</span></div>
+            <div class="spec-card-body">
+              <ul class="steps-list">
+                <li class="step-item"><span class="step-n" style="color:var(--red)">✗</span><div>Full sand and restain — destroys the patina that took decades to develop</div></li>
+                <li class="step-item"><span class="step-n" style="color:var(--red)">✗</span><div>Bleach or oxalic acid wash — irreversible severe uneven lightening</div></li>
+                <li class="step-item"><span class="step-n" style="color:var(--red)">✗</span><div>Paint over with tinted primer — you lose all wood grain permanently</div></li>
+                <li class="step-item"><span class="step-n" style="color:var(--red)">✗</span><div>Satin or gloss poly — ceiling looks like a bowling alley under projector light</div></li>
+              </ul>
+            </div>
+          </div>
+          <div class="spec-card" style="margin-top:1rem">
+            <div class="spec-card-head"><span class="spec-card-title">Products to Buy at Lowe's</span></div>
+            <div class="spec-card-body">
+              <table class="spec-tbl">
+                <tr><td>Spot stain</td><td>Minwax Gel Stain — Dark Walnut</td></tr>
+                <tr><td>Sealer</td><td>Minwax Wipe-On Poly — Flat</td></tr>
+                <tr><td>Sandpaper</td><td>150 grit + 220 grit sheets</td></tr>
+                <tr><td>Application</td><td>Lint-free shop rags only</td></tr>
+                <tr><td>Est. cost</td><td>~$25–35 total</td></tr>
+                <tr><td>Est. time</td><td>2–3 hours for whole ceiling</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main><!-- end main -->
+</div><!-- end shell -->
+
+<script>
+// ─── HELPERS ───────────────────────────────────────
+function h2r(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
+function r2h(r,g,b){return'#'+[r,g,b].map(v=>Math.round(Math.max(0,Math.min(255,v))).toString(16).padStart(2,'0')).join('')}
+function blend(a,b,t){const[r1,g1,b1]=h2r(a),[r2,g2,b2]=h2r(b);return r2h(r1+(r2-r1)*t,g1+(g2-g1)*t,b1+(b2-b1)*t)}
+function lum(h){const[r,g,b]=h2r(h).map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return.2126*r+.7152*g+.0722*b}
+function tc(h){return lum(h)>.25?'#1a1410':'#f0e4d0'}
+
+// ─── PALETTE DATA ──────────────────────────────────
+const PALETTE=[
+  {
+    hex:'#1F1A17',name:'Cinematic Black-Brown',applies:'Trim · Screen Surround · Valance Box · Baseboard · Nosing',
+    product:'Sherwin-Williams Emerald Urethane Trim Enamel — Tricorn Black SW 6258, Flat sheen',
+    where:'Sherwin-Williams store (not Lowe\'s stock) — have them tint to SW 6258',
+    prep:'Zinsser BIN Shellac Primer (Lowe\'s) first — mandatory for pine to block resin bleed. Sand 150 grit before primer, 220 grit after.',
+    extra:'Apply with 4" foam roller on flat faces. 2 coats minimum.'
+  },
+  {
+    hex:'#2E241E',name:'Charred Espresso',applies:'Riser Top Surface Carpet · Booknook Seat Cushion Tone Reference',
+    product:'Dark charcoal low-pile carpet — look for Berber or commercial loop in near-black charcoal. Lowe\'s carries TrafficMASTER in dark charcoal tones.',
+    where:'Lowe\'s Flooring Dept — TrafficMASTER or Shaw commercial loop',
+    prep:'None for carpet. Measure riser platform + booknook seat area before ordering. Order 15% extra for cuts.',
+    extra:'Low pile preferred — high pile compresses under recliners and wears faster.'
+  },
+  {
+    hex:'#3A312B',name:'Iron Bronze',applies:'Sconces · Cabinet Hardware · Exposed Metal Details in Booknook',
+    product:'Matte/Oil-Rubbed Bronze finish fixtures — sconces, shelf brackets with bronze option, cabinet pulls',
+    where:'Lowe\'s Lighting and Hardware aisles',
+    prep:'No prep — finish hardware, not a paint color.',
+    extra:'Reserve bronze exclusively for metal hardware. All wood trim stays matte black.'
+  },
+  {
+    hex:'#5A4638',name:'Aged Walnut',applies:'Shiplap Walls · Riser Face · Booknook Back Wall · Shelf Boards',
+    product:'Minwax Oil-Based Penetrating Stain — Dark Walnut #2716 (qt) + Minwax Pre-Stain Wood Conditioner (qt) + Minwax Wipe-On Poly Flat (pt)',
+    where:'Lowe\'s — Stain aisle. All three products available.',
+    prep:'CRITICAL: Apply conditioner 15 min before stain on every board. Pine blotches without it. Sand 120→150 grit first. Apply stain with lint-free rags, wipe at 4–5 min.',
+    extra:'Test on scrap pine first to confirm timing preference. Two coats for deeper tone (no second conditioner needed).'
+  },
+  {
+    hex:'#6A5648',name:'Smoked Oak',applies:'Existing Ceiling (reference) · Ceiling Spot Treatment Target Tone',
+    product:'Minwax Gel Stain — Dark Walnut (for spot treatment matching) + Minwax Wipe-On Poly Flat',
+    where:'Lowe\'s — Stain aisle',
+    prep:'Clean ceiling first, dry 48 hrs. Sand white water-damage spots with 150 grit only. Spot-apply gel stain on damaged areas, feather edges 3–4". Seal treated spots only.',
+    extra:'Do NOT coat the whole ceiling. Leave the natural patina. This is spot repair only — 2–3 hrs total work.'
+  },
+  {
+    hex:'#8A503A',name:'Aged Brick Red',applies:'Existing Brick Side Walls (fixed — no treatment)',
+    product:'No purchase needed — existing brick is left as-is. Optional: brick sealer for protection.',
+    where:'N/A — fixed element',
+    prep:'If desired: clean with stiff brush and water. Optionally apply a clear masonry sealer (Lowe\'s Masonry Waterproofer) to protect from scuffs during construction.',
+    extra:'The brick\'s warm tone is the anchor for the entire palette. Do not paint or limewash.'
+  },
+  {
+    hex:'#8A7767',name:'Warm Taupe',applies:'Existing Wood-Look Floor Tile (fixed — no treatment)',
+    product:'No purchase needed — existing floor tile stays.',
+    where:'N/A — fixed element',
+    prep:'None required. Clean grout lines once construction is complete if needed.',
+    extra:'The floor bridges the warm brick and dark shiplap naturally. No changes needed or recommended.'
+  },
+  {
+    hex:'#CBBEAF',name:'Muted Linen',applies:'Optional: Shelf Backing · Booknook Cushion Accent · Future soft furnishings reference',
+    product:'Reference only — for soft goods: cushion fabric, throw blanket, or decorative accent. Not a paint purchase.',
+    where:'Fabric stores or online for cushion material',
+    prep:'None — accent/soft furnishings reference only.',
+    extra:'Used sparingly as a light contrast against the dark palette. One or two cushions, a throw — not a wall color.'
+  },
+];
+
+// ─── BUILD PALETTE ─────────────────────────────────
+function buildPalette(){
+  const strip=document.getElementById('paletteStrip');
+  const cards=document.getElementById('paletteCards');
+  // full strip (sorted dark to light reversed = light to dark visual)
+  const sorted=[...PALETTE].sort((a,b)=>lum(a.hex)-lum(b.hex));
+  strip.innerHTML=sorted.map(p=>`<div style="background:${p.hex}" title="${p.name}"></div>`).join('');
+  // cards
+  cards.innerHTML=PALETTE.map(p=>{
+    const text=tc(p.hex);
+    return`<div class="pal-card">
+      <div class="pal-swatch" style="background:${p.hex}">
+        <span class="pal-swatch-label" style="color:${text}">${p.hex.toUpperCase()}</span>
+      </div>
+      <div class="pal-info">
+        <div class="pal-applies">${p.applies}</div>
+        <div class="pal-name">${p.name}</div>
+        <div class="pal-hex">${p.hex.toUpperCase()}</div>
+        <div class="pal-divider"></div>
+        <div class="pal-product"><span>Product: </span>${p.product}</div>
+        <div class="pal-product" style="margin-top:.2rem"><span>Where: </span>${p.where}</div>
+        <div class="pal-prep"><strong>Prep & Notes:</strong> ${p.prep} ${p.extra?'<br>'+p.extra:''}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── CHECKLIST DATA ────────────────────────────────
+const CHECKLIST=[
+  {group:'Prep & Materials',items:[
+    {text:'Purchase pine shiplap boards (RELIABILT 23/32" × 7⅛" × 8ft)',note:'Quantity based on wall sq footage + 15% waste. Confirm amount needed.',tag:'prep'},
+    {text:'Purchase 1×4 Select S4S Pine trim boards',note:'Buy 30–35 boards — 25 is likely short. Lowe\'s RELIABILT.',tag:'prep'},
+    {text:'Purchase stain kit: Minwax Pre-Stain Conditioner + Dark Walnut #2716 + Wipe-On Poly Flat',note:'All three from Lowe\'s stain aisle. Buy qty based on wall sq footage.',tag:'prep'},
+    {text:'Purchase Zinsser BIN Shellac Primer for trim',note:'Mandatory for pine trim before painting matte black.',tag:'prep'},
+    {text:'Purchase Tricorn Black SW 6258 flat trim enamel',note:'From Sherwin-Williams store — not available at Lowe\'s.',tag:'prep'},
+    {text:'Purchase ceiling touch-up materials: gel stain + flat wipe-on poly + sandpaper',note:'~$30 total. Lowe\'s stain aisle.',tag:'prep'},
+    {text:'Purchase dark charcoal low-pile carpet for riser',note:'Measure riser + booknook platform area first. Order 15% extra.',tag:'prep'},
+    {text:'Purchase matte black shelf brackets + LED strip (warm amber 2700K)',note:'For booknook shelving. Lowe\'s hardware and lighting aisles.',tag:'prep'},
+  ]},
+  {group:'Ceiling',items:[
+    {text:'Clean ceiling boards — vacuum + barely damp wipe, dry 48 hrs',note:'Do this before any other ceiling work.',tag:'finish'},
+    {text:'Sand white water-damage spots with 150 grit only',note:'Spot treatment only — do not sand the whole ceiling.',tag:'finish'},
+    {text:'Apply gel stain spot treatment, feather edges',note:'Dark Walnut gel stain. View from 8 ft before deciding if second pass needed.',tag:'finish'},
+    {text:'Seal treated spots with flat wipe-on poly — spots only',note:'Do not coat the full ceiling.',tag:'finish'},
+  ]},
+  {group:'Shiplap Walls',items:[
+    {text:'Sand all boards 120 → 150 grit before staining',note:'Work on sawhorses before install. With the grain only.',tag:'build'},
+    {text:'Apply Pre-Stain Conditioner, then stain within 15 minutes',note:'Wipe stain at 4–5 min for target depth. Test on scrap first.',tag:'build'},
+    {text:'Cure 8 hrs, apply Wipe-On Poly Flat, cure 24 hrs before install',note:'One coat poly is sufficient.',tag:'build'},
+    {text:'Install shiplap horizontally on all non-brick framed walls',note:'Leave shadow gap at ceiling — no crown molding.',tag:'build'},
+  ]},
+  {group:'Riser Construction',items:[
+    {text:'Frame riser platform — 8" height, 60" depth, full room width',note:'L-wrap into left corner for booknook integration.',tag:'build'},
+    {text:'Box utility lines (dryer vent + HW relief) inside riser frame before closing',note:'Critical — do before face shiplap goes on.',tag:'critical'},
+    {text:'Run electrical conduit horizontally inside riser cavity to seating positions',note:'Coordinate with electrician if needed. Code-compliant in-wall conduit.',tag:'critical'},
+    {text:'Clad riser face with matching stained shiplap',note:'Same Dark Walnut process as walls.',tag:'build'},
+    {text:'Install matte black 1×2 step nosing cap',note:'Flat, clean edge. Secure into riser frame.',tag:'finish'},
+    {text:'Install toe-kick LED strip under nosing, amber 2700K',note:'Wire through riser cavity to dimmer switch.',tag:'finish'},
+    {text:'Install dark charcoal carpet on riser platform + booknook seat',note:'Wrap edges neatly under nosing.',tag:'finish'},
+  ]},
+  {group:'Booknook Shelving',items:[
+    {text:'Install shiplap on booknook back wall behind shelf area',note:'Same stain as all other walls.',tag:'build'},
+    {text:'Mount matte black shelf brackets into studs — 16" on center',note:'3–4 shelves, 12" spacing. Must hit studs — no drywall anchors.',tag:'build'},
+    {text:'Install stained pine shelf boards (Dark Walnut, same process)',note:'1×10 or 1×12 pine. Flat matte finish.',tag:'build'},
+    {text:'Wire and install under-shelf LED strips (warm amber 2700K)',note:'Run to dimmer — dimmable lighting in booknook.',tag:'finish'},
+  ]},
+  {group:'Trim',items:[
+    {text:'Prime all 1×4 trim boards with Zinsser BIN Shellac Primer',note:'One coat. Sand with 220 grit after dry.',tag:'build'},
+    {text:'Paint all trim boards Tricorn Black SW 6258 flat enamel — 2 coats',note:'Foam roller on flat faces. Brush on edges.',tag:'build'},
+    {text:'Install 1×4 vertical flanking trim both sides of screen — floor to ceiling',note:'These define the cinematic zone.',tag:'build'},
+    {text:'Install 1×4 header trim above screen wall',note:'Full width between flanking verticals or wall to wall.',tag:'build'},
+    {text:'Install flat baseboard (1×4) all non-brick walls',note:'No cap molding on top. Shadow gap at ceiling — no crown.',tag:'finish'},
+    {text:'Install window and door casings (1×4, all sides)',note:'Flat modern — butt joints, no miters required.',tag:'finish'},
+    {text:'Install shiplap-to-brick return trim pieces at transitions',note:'1×4 return piece where shiplap meets brick.',tag:'finish'},
+  ]},
+  {group:'Screen Valance Box',items:[
+    {text:'Build three-sided box frame — depth matching beam (5"), face drops 5" below beam',note:'Front face flush with beam face. Sides returned to wall.',tag:'build'},
+    {text:'Cut slot in removable bottom panel — screen bar width + ¼" each side only',note:'Not the full screen width. Slot near rear of panel.',tag:'build'},
+    {text:'Install turn-button or rare-earth magnet fasteners on bottom panel',note:'No visible screws. Panel must be removable for motor service.',tag:'build'},
+    {text:'Paint valance box Tricorn Black flat enamel, matching all trim',note:'Shellac prime pine first. Valance box is continuous with screen surround visually.',tag:'finish'},
+  ]},
+];
+
+function buildChecklist(){
+  const el=document.getElementById('checklistEl');
+  let saved={};
+  try{saved=JSON.parse(localStorage.getItem('cinema-checklist')||'{}');}catch(e){}
+  let html='';
+  CHECKLIST.forEach(g=>{
+    html+=`<div class="cl-group"><div class="cl-group-label">${g.group}</div>`;
+    g.items.forEach((item,i)=>{
+      const id=g.group+i;
+      const done=!!saved[id];
+      const tagMap={prep:'tag-prep',build:'tag-build',finish:'tag-finish',critical:'tag-critical'};
+      const tagLabel={prep:'Prep',build:'Build',finish:'Finish',critical:'Critical'};
+      html+=`<div class="cl-item${done?' done':''}" onclick="toggleCheck('${id}',this)">
+        <div class="cl-check"><span class="cl-check-mark">✓</span></div>
+        <div class="cl-content">
+          <div class="cl-text">${item.text}</div>
+          <div class="cl-note">${item.note}</div>
+        </div>
+        <span class="cl-tag ${tagMap[item.tag]}">${tagLabel[item.tag]}</span>
+      </div>`;
+    });
+    html+='</div>';
+  });
+  el.innerHTML=html;
+  updateProgress();
+}
+
+function toggleCheck(id,el){
+  let saved={};
+  try{saved=JSON.parse(localStorage.getItem('cinema-checklist')||'{}');}catch(e){}
+  saved[id]=!saved[id];
+  try{localStorage.setItem('cinema-checklist',JSON.stringify(saved));}catch(e){}
+  el.classList.toggle('done');
+  updateProgress();
+}
+
+function updateProgress(){
+  let saved={};
+  try{saved=JSON.parse(localStorage.getItem('cinema-checklist')||'{}');}catch(e){}
+  const total=CHECKLIST.reduce((a,g)=>a+g.items.length,0);
+  const done=Object.values(saved).filter(Boolean).length;
+  const pct=Math.round(done/total*100);
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('progressPct').textContent=pct+'%';
+  document.getElementById('sbProgress').style.width=pct+'%';
+  document.getElementById('sbProgressN').textContent=done+' of '+total+' complete';
+  const mob=document.getElementById('mobProg');
+  if(mob) mob.textContent=pct+'%';
+}
+
+// ─── CANVAS RENDERS ────────────────────────────────
+function drawWall(){
+  const cv=document.getElementById('wallCanvas');if(!cv)return;
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  ctx.clearRect(0,0,W,H);
+  const sh=blend('#5A4638','#8a6030',.06),br='#8A503A',fl='#8A7767',ceil='#6A5648',blk='#1F1A17';
+  const fg=ctx.createLinearGradient(0,H*.72,0,H);
+  fg.addColorStop(0,blend(fl,'#000',.04));fg.addColorStop(1,blend(fl,'#000',.2));
+  ctx.fillStyle=fg;ctx.fillRect(0,H*.72,W,H*.28);
+  ctx.strokeStyle='rgba(0,0,0,.08)';ctx.lineWidth=1;
+  for(let y=H*.73;y<H;y+=12){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+  const wg=ctx.createLinearGradient(0,0,0,H*.75);
+  wg.addColorStop(0,blend(sh,'#000',.35));wg.addColorStop(.65,sh);
+  ctx.fillStyle=wg;ctx.fillRect(0,0,W,H*.75);
+  ctx.strokeStyle='rgba(0,0,0,.18)';ctx.lineWidth=1.5;
+  for(let y=14;y<H*.75;y+=20){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+  const bw=W*.13;
+  for(let row=0;row<16;row++){const ry=row*20+6,off=row%2===0?0:18;
+    for(let bx=off-18;bx<bw+4;bx+=36){ctx.fillStyle=blend(br,'#7B4A35',Math.random()*.3+.1);ctx.fillRect(bx+1,ry+1,33,17);}}
+  ctx.fillStyle='rgba(15,8,4,.22)';ctx.fillRect(0,0,bw,H*.75);
+  for(let row=0;row<16;row++){const ry=row*20+6,off=row%2===0?0:18;
+    for(let bx=W-bw+off-18;bx<W+4;bx+=36){ctx.fillStyle=blend(br,'#7B4A35',Math.random()*.35);ctx.fillRect(bx+1,ry+1,33,17);}}
+  ctx.fillStyle='rgba(15,8,4,.28)';ctx.fillRect(W-bw,0,bw,H*.75);
+  const cg=ctx.createLinearGradient(0,0,0,H*.07);
+  cg.addColorStop(0,blend(ceil,'#000',.5));cg.addColorStop(1,ceil);
+  ctx.fillStyle=cg;ctx.fillRect(0,0,W,H*.07);
+  ctx.strokeStyle='rgba(0,0,0,.2)';ctx.lineWidth=1;
+  for(let y=5;y<H*.07;y+=10){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+  ctx.fillStyle=blk;ctx.fillRect(0,H*.72-8,W,8);
+  const vg=ctx.createRadialGradient(W/2,H/2,60,W/2,H/2,W*.65);
+  vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.5)');
+  ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);
+}
+
+function drawTrim(){
+  const cv=document.getElementById('trimCanvas');if(!cv)return;
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  ctx.clearRect(0,0,W,H);
+  const sh=blend('#5A4638','#8a6030',.06),blk='#1F1A17',ceil='#6A5648',fl='#8A7767';
+  const wg=ctx.createLinearGradient(0,0,0,H*.82);
+  wg.addColorStop(0,blend(sh,'#000',.35));wg.addColorStop(.65,sh);
+  ctx.fillStyle=wg;ctx.fillRect(0,0,W,H*.82);
+  ctx.strokeStyle='rgba(0,0,0,.16)';ctx.lineWidth=1.5;
+  for(let y=12;y<H*.82;y+=20){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+  // ceiling
+  ctx.fillStyle=blend(ceil,'#000',.45);ctx.fillRect(0,0,W,12);
+  // floor
+  const fg=ctx.createLinearGradient(0,H*.82,0,H);
+  fg.addColorStop(0,blend(fl,'#000',.04));fg.addColorStop(1,blend(fl,'#000',.18));
+  ctx.fillStyle=fg;ctx.fillRect(0,H*.82,W,H*.18);
+  ctx.strokeStyle='rgba(0,0,0,.08)';ctx.lineWidth=1;
+  for(let y=H*.83;y<H;y+=12){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+  // shadow gap
+  ctx.fillStyle='rgba(0,0,0,.55)';ctx.fillRect(0,12,W,2);
+  // 1×4 header
+  ctx.fillStyle=blk;ctx.fillRect(W*.1,H*.07,W*.8,18);
+  ctx.fillStyle='rgba(255,255,255,.04)';ctx.fillRect(W*.1,H*.07,W*.8,1);
+  // 1×4 verticals
+  ctx.fillStyle=blk;ctx.fillRect(W*.1,12,14,H*.7);ctx.fillRect(W*.1+W*.8-14,12,14,H*.7);
+  ctx.fillStyle='rgba(255,255,255,.03)';ctx.fillRect(W*.1,12,1,H*.7);ctx.fillRect(W*.1+W*.8-14,12,1,H*.7);
+  // screen surround 1×3
+  const sx=W*.1+16,sy=H*.07+20,sw=W*.8-32,sh2=H*.6;
+  ctx.fillStyle=blk;ctx.fillRect(sx,sy,sw,8);ctx.fillRect(sx,sy,8,sh2);ctx.fillRect(sx+sw-8,sy,8,sh2);ctx.fillRect(sx,sy+sh2-8,sw,8);
+  // screen
+  const scg=ctx.createLinearGradient(sx+8,sy+8,sx+8,sy+sh2-8);
+  scg.addColorStop(0,'#9aaccc');scg.addColorStop(1,'#6878a8');
+  ctx.fillStyle=scg;ctx.fillRect(sx+8,sy+8,sw-16,sh2-16);
+  ctx.fillStyle='rgba(10,18,45,.65)';ctx.fillRect(sx+8,sy+8,sw-16,sh2-16);
+  ctx.fillStyle='rgba(180,160,130,.3)';ctx.font='11px Barlow Condensed,sans-serif';
+  ctx.textAlign='center';ctx.fillText('SCREEN',sx+sw/2,sy+sh2/2+4);ctx.textAlign='left';
+  // baseboard
+  ctx.fillStyle=blk;ctx.fillRect(W*.1,H*.82-12,W*.8,12);
+  ctx.fillStyle='rgba(255,255,255,.03)';ctx.fillRect(W*.1,H*.82-12,W*.8,1);
+  // annotations
+  ctx.fillStyle='rgba(200,148,74,.7)';ctx.font='bold 8px Barlow Condensed,sans-serif';
+  ctx.fillText('1×4 HEADER',W*.12+16,H*.07+13);
+  ctx.fillText('1×4 FLANKING',W*.12+16,H*.38);
+  ctx.fillText('FLAT BASEBOARD',W*.12+16,H*.82-2);
+  ctx.fillText('SHADOW GAP',W*.12+2,20);
+  // dim lines
+  ctx.strokeStyle='rgba(200,148,74,.3)';ctx.lineWidth=1;ctx.setLineDash([3,3]);
+  ctx.beginPath();ctx.moveTo(W*.92,H*.82-12);ctx.lineTo(W*.92,H*.82);ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle='rgba(200,148,74,.6)';ctx.fillText('3.5"',W*.93,H*.82-3);
+  const vg=ctx.createRadialGradient(W/2,H/2,80,W/2,H/2,W*.65);
+  vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.45)');
+  ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);
+}
+
+function drawRiserPlan(){
+  const cv=document.getElementById('riserPlan');if(!cv)return;
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  ctx.clearRect(0,0,W,H);ctx.fillStyle='#141008';ctx.fillRect(0,0,W,H);
+  const M=22,rW=W-M*2,rH=H-M*2,rx=M,ry=M;
+  ctx.strokeStyle='#3a3020';ctx.lineWidth=2;ctx.strokeRect(rx,ry,rW,rH);
+  ctx.fillStyle='#1a1610';ctx.fillRect(rx,ry,rW,rH);
+  ctx.strokeStyle='rgba(100,90,70,.1)';ctx.lineWidth=.5;
+  for(let x=rx;x<rx+rW;x+=18){ctx.beginPath();ctx.moveTo(x,ry);ctx.lineTo(x,ry+rH);ctx.stroke()}
+  for(let y=ry;y<ry+rH;y+=36){ctx.beginPath();ctx.moveTo(rx,y);ctx.lineTo(rx+rW,y);ctx.stroke()}
+  // screen wall
+  ctx.strokeStyle='rgba(200,148,74,.5)';ctx.lineWidth=3;
+  ctx.beginPath();ctx.moveTo(rx+rW*.15,ry);ctx.lineTo(rx+rW*.85,ry);ctx.stroke();
+  // riser platform
+  const riserY=ry+rH-rH*.46;
+  ctx.fillStyle='rgba(90,70,56,.3)';ctx.strokeStyle='#c8944a';ctx.lineWidth=1.5;
+  ctx.fillRect(rx+16,riserY,rW-32,rH*.44);ctx.strokeRect(rx+16,riserY,rW-32,rH*.44);
+  // step edge
+  ctx.strokeStyle='#c8944a';ctx.lineWidth=2.5;
+  ctx.beginPath();ctx.moveTo(rx+16,riserY);ctx.lineTo(rx+rW-16,riserY);ctx.stroke();
+  // LED
+  ctx.strokeStyle='rgba(255,180,80,.5)';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);
+  ctx.beginPath();ctx.moveTo(rx+18,riserY+5);ctx.lineTo(rx+rW-18,riserY+5);ctx.stroke();ctx.setLineDash([]);
+  // booknook L-wrap
+  const bnW=rW*.28;const bnY=riserY-rH*.1;
+  ctx.fillStyle='rgba(70,50,40,.5)';ctx.strokeStyle='#c8944a';ctx.lineWidth=1.5;
+  ctx.fillRect(rx+16,bnY,bnW,rH*.1);ctx.strokeRect(rx+16,bnY,bnW,rH*.1);
+  // utility chase
+  ctx.strokeStyle='rgba(100,150,200,.4)';ctx.lineWidth=1;ctx.setLineDash([2,2]);
+  ctx.strokeRect(rx+16+bnW-14,bnY,12,rH*.1+rH*.06);ctx.setLineDash([]);
+  ctx.fillStyle='rgba(100,150,200,.1)';ctx.fillRect(rx+16+bnW-14,bnY,12,rH*.1+rH*.06);
+  // screen wall indicator
+  ctx.fillStyle='rgba(100,120,160,.15)';ctx.strokeStyle='rgba(100,120,160,.4)';ctx.lineWidth=1.5;
+  ctx.fillRect(rx+rW*.18,ry+3,rW*.64,12);ctx.strokeRect(rx+rW*.18,ry+3,rW*.64,12);
+  // labels
+  ctx.fillStyle='rgba(200,148,74,.85)';ctx.font='bold 8px Barlow Condensed,sans-serif';
+  ctx.textAlign='center';
+  ctx.fillText('SCREEN WALL',rx+rW/2,ry+13);
+  ctx.fillText('RISER PLATFORM (60" DEEP)',rx+rW/2,riserY+rH*.22);
+  ctx.textAlign='left';
+  ctx.fillText('STEP EDGE',rx+rW*.35,riserY-4);
+  ctx.fillStyle='rgba(200,148,74,.7)';ctx.fillText('BOOKNOOK',rx+20,bnY+rH*.06);
+  ctx.fillStyle='rgba(100,150,200,.8)';ctx.fillText('UTILITY',rx+16+bnW-13,bnY-3);
+  ctx.fillStyle='rgba(255,180,80,.65)';ctx.fillText('LED',rx+rW*.52,riserY+13);
+  ctx.textAlign='left';
+}
+
+function drawValance(){
+  const cv=document.getElementById('valanceCanvas');if(!cv)return;
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  ctx.clearRect(0,0,W,H);
+  const sh='#5A4638',blk='#1F1A17',wall=blend('#5A4638','#000',.3),ceil='#6A5648';
+  // wall background shiplap
+  ctx.fillStyle=wall;ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='rgba(0,0,0,.15)';ctx.lineWidth=1.2;
+  for(let y=12;y<H;y+=18){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+  // ceiling
+  ctx.fillStyle=blend(ceil,'#000',.5);ctx.fillRect(0,0,W,16);
+  // beam (structural)
+  const beamH=H*.18,beamDepth=H*.22,beamY=16;
+  ctx.fillStyle=blend(ceil,'#000',.2);ctx.fillRect(W*.15,beamY,W*.7,beamH);
+  ctx.strokeStyle='rgba(0,0,0,.3)';ctx.lineWidth=1;
+  for(let y=beamY+8;y<beamY+beamH;y+=10){ctx.beginPath();ctx.moveTo(W*.15,y);ctx.lineTo(W*.15+W*.7,y);ctx.stroke()}
+  // valance box face (matte black, flush with beam)
+  const boxFaceY=beamY+beamH,boxFaceH=H*.18;// 5" drop
+  ctx.fillStyle=blk;ctx.fillRect(W*.15,boxFaceY,W*.7,boxFaceH);
+  ctx.fillStyle='rgba(255,255,255,.03)';ctx.fillRect(W*.15,boxFaceY,W*.7,1);
+  // removable bottom panel
+  const bottomY=boxFaceY+boxFaceH;
+  ctx.fillStyle=blend(blk,'#2a2018',.2);ctx.fillRect(W*.15,bottomY,W*.7,8);
+  // magnet indicators on bottom panel
+  [W*.25,W*.5,W*.75].forEach(mx=>{
+    ctx.fillStyle='rgba(200,180,120,.3)';ctx.beginPath();ctx.arc(mx,bottomY+4,3,0,Math.PI*2);ctx.fill();
+  });
+  // slot opening in bottom
+  const slotW=W*.2,slotX=W*.15+W*.35-slotW/2;
+  ctx.fillStyle='#0a0806';ctx.fillRect(slotX,bottomY,slotW,8);
+  ctx.strokeStyle='rgba(200,148,74,.3)';ctx.lineWidth=1;ctx.setLineDash([2,2]);
+  ctx.strokeRect(slotX,bottomY,slotW,8);ctx.setLineDash([]);
+  // screen bar visible in slot
+  ctx.fillStyle='rgba(180,170,160,.4)';ctx.fillRect(slotX+2,bottomY+2,slotW-4,4);
+  // screen fabric below
+  const fabW=W*.5,fabX=W*.15+W*.35-fabW/2;
+  ctx.fillStyle='rgba(200,195,185,.12)';ctx.fillRect(fabX,bottomY+8,fabW,H*.25);
+  ctx.strokeStyle='rgba(200,195,185,.2)';ctx.lineWidth=.5;
+  ctx.strokeRect(fabX,bottomY+8,fabW,H*.25);
+  // dimension arrows
+  ctx.strokeStyle='rgba(200,148,74,.4)';ctx.lineWidth=1;ctx.setLineDash([3,3]);
+  ctx.beginPath();ctx.moveTo(W*.88,boxFaceY);ctx.lineTo(W*.88,boxFaceY+boxFaceH);ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle='rgba(200,148,74,.7)';ctx.font='bold 8px Barlow Condensed,sans-serif';
+  ctx.fillText('5"',W*.89,boxFaceY+boxFaceH/2+3);
+  // labels
+  ctx.fillStyle='rgba(200,148,74,.8)';ctx.font='bold 8px Barlow Condensed,sans-serif';
+  ctx.textAlign='center';
+  ctx.fillText('STRUCTURAL BEAM',W*.5,beamY+beamH/2+3);
+  ctx.fillText('VALANCE FACE (MATTE BLACK)',W*.5,boxFaceY+boxFaceH/2+3);
+  ctx.fillStyle='rgba(255,180,80,.7)';
+  ctx.fillText('REMOVABLE BOTTOM + SLOT',W*.5,bottomY+15);
+  ctx.fillStyle='rgba(200,195,185,.5)';
+  ctx.fillText('SCREEN (shown lowered)',W*.5,bottomY+H*.12+8);
+  ctx.textAlign='left';
+  const vg=ctx.createLinearGradient(0,0,W,0);
+  vg.addColorStop(0,'rgba(0,0,0,.25)');vg.addColorStop(.5,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.25)');
+  ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);
+}
+
+// ─── NAV ──────────────────────────────────────────
+
+function goHome(){
+  closeSidebar();
+  document.getElementById('mainShell').style.display='none';
+  document.getElementById('cover').style.display='flex';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showMain(targetId){
+  document.getElementById('cover').style.display='none';
+  document.getElementById('mainShell').style.display='flex';
+  // on mobile the shell is flex-direction:column, main is not a scroll container
+  const isMobile=window.innerWidth<=768;
+  if(isMobile) document.getElementById('mainShell').style.flexDirection='column';
+  setTimeout(()=>{
+    drawWall();drawTrim();drawRiserPlan();drawValance();
+    if(targetId) navScrollTo(targetId);
+  },120);
+}
+
+function navScrollTo(id){
+  const el=document.getElementById(id);
+  if(!el) return;
+  // scrollIntoView finds the correct scroll container automatically on any device
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function toggleSidebar(){
+  const sb=document.getElementById('sidebar');
+  const ov=document.getElementById('overlay');
+  sb.classList.toggle('open');
+  ov.classList.toggle('open');
+}
+
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+
+function setActive(el){
+  document.querySelectorAll('.sb-link').forEach(l=>l.classList.remove('active'));
+  el.classList.add('active');
+  // close drawer on mobile after selecting
+  if(window.innerWidth<=768) closeSidebar();
+}
+
+// Intersection observer for sidebar active state
+function initObserver(){
+  const sections=document.querySelectorAll('.section');
+  const links=document.querySelectorAll('.sb-link');
+  const isMobile=window.innerWidth<=768;
+  const root=isMobile?null:document.getElementById('mainContent');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id=e.target.id;
+        links.forEach(l=>{
+          l.classList.toggle('active',l.getAttribute('href')==='#'+id);
+        });
+      }
+    });
+  },{root,threshold:.25,rootMargin:'-10% 0px -55% 0px'});
+  sections.forEach(s=>obs.observe(s));
+}
+
+// ─── INIT ─────────────────────────────────────────
+buildPalette();
+buildChecklist();
+setTimeout(initObserver,200);
+const mobHomeBtn=document.getElementById('mobHomeBtn');
+if(mobHomeBtn){ mobHomeBtn.addEventListener('click',goHome); }
+
+// Robust cover navigation for mobile and desktop
+function enterPortfolio(targetId){
+  if(!targetId) targetId='palette';
+  showMain(targetId);
+}
+
+document.querySelectorAll('.cover-navbtn').forEach(btn=>{
+  const targetId=btn.dataset.target || 'palette';
+
+  btn.addEventListener('pointerup',function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    enterPortfolio(targetId);
+  });
+
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    enterPortfolio(targetId);
+  });
+});
+</script>
+</body>
+</html>
